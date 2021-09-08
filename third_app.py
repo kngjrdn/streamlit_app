@@ -15,20 +15,20 @@ st.set_page_config(page_title="Kiteko Dashboard", page_icon="📈", layout="wide
 st.markdown(""" <style> #MainMenu {visibility: hidden;} footer {visibility: hidden;} </style> """, unsafe_allow_html=True)
 
 #######    DATA PREPROCESSING   #########
-monthly_data = pd.read_excel("~/Downloads/FN-2016-2019(1).xlsx", sheet_name="Monthly", skiprows=2, header=0).fillna(0)
+monthly_data = pd.read_excel("FN-2016-2019(1).xlsx", sheet_name="Monthly", skiprows=2, header=0).fillna(0)
 monthly_data = monthly_data[monthly_data['Account Item'] != 0][1:]
 monthly_data = monthly_data.set_index("Account Item").astype(int)
 
-ytd_data = pd.read_excel("~/Downloads/FN-2016-2019(1).xlsx", sheet_name="YTD", skiprows=2, header=0).fillna(0)
+ytd_data = pd.read_excel("FN-2016-2019(1).xlsx", sheet_name="YTD", skiprows=2, header=0).fillna(0)
 ytd_data = ytd_data[ytd_data['Account Item'] != 0][1:]
 ytd_data = ytd_data.set_index("Account Item").astype(int)
 
-#raw_data = pd.read_excel("~/Downloads/FN-2016-2019(1).xlsx", sheet_name="Monthly", skiprows=2, header=0).fillna(0)
-quarterly_data = pd.read_excel("~/Downloads/FN-2016-2019(1).xlsx", sheet_name="Quarterly", skiprows=3).fillna(0)
+#raw_data = pd.read_excel("FN-2016-2019(1).xlsx", sheet_name="Monthly", skiprows=2, header=0).fillna(0)
+quarterly_data = pd.read_excel("FN-2016-2019(1).xlsx", sheet_name="Quarterly", skiprows=3).fillna(0)
 quarterly_data = quarterly_data[quarterly_data['Account Item'] != 0]
 quarterly_data = quarterly_data.set_index("Account Item").astype(int)
 
-annual_data = pd.read_excel("~/Downloads/FN-2016-2019(1).xlsx", sheet_name="Annually", skiprows=3).fillna(0)
+annual_data = pd.read_excel("FN-2016-2019(1).xlsx", sheet_name="Annually", skiprows=3).fillna(0)
 annual_data = annual_data[annual_data['Account Item'] != 0]
 annual_data = annual_data.set_index("Account Item").astype(int)
 
@@ -127,29 +127,7 @@ if period == "FTM":
         if data_show:
             display_df(monthly_data, units)
 
-        options = {"tooltip": {"trigger": "item"}, "legend": {"top": "5%", "left": "center"}, 
-        "series": [{"name": "Plot of Pie", "type": "pie", "radius": ["40%", "70%"], "avoidLabelOverlap": False, 
-        "itemStyle": {"borderRadius": 10, "borderColor": "#fff", "borderWidth": 2,}, "label": {"show": False, "position": "center"},
-        "emphasis": {"label": {"show": True, "fontSize": "40", "fontWeight": "bold"}}, "labelLine": {"show": False},
-        "data": [{"value": 1048, "name": "Boy"}, {"value": 735, "name": "Girl"}, {"value": 580, "name": "Sister"}, 
-                {"value": 484, "name": "Brother"}, {"value": 300, "name": "Wife"},],}],}
-        st_echarts(options=options)
-
-        option = {"legend": {}, "tooltip": {"trigger": "axis", "showContent": False},
-                "dataset": {"source": [["product", "2012", "2013", "2014", "2015", "2016", "2017"],
-                ["Milk Tea", 56.5, 82.1, 88.7, 70.1, 53.4, 85.1],
-                ["Matcha Latte", 51.1, 51.4, 55.1, 53.3, 73.8, 68.7],
-                ["Cheese Cocoa", 40.1, 62.2, 69.5, 36.4, 45.2, 32.5],
-                ["Walnut Brownie", 25.2, 37.1, 41.2, 18, 33.9, 49.1],]},
-                "xAxis": {"type": "category"}, "yAxis": {"gridIndex": 0}, "grid": {"top": "55%"},
-                "series": [{"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"},},
-                {"type": "line","smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"},},
-                {"type": "line", "smooth": True,"seriesLayoutBy": "row", "emphasis": {"focus": "series"},},
-                {"type": "line","smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"},},
-                {"type": "pie", "id": "pie", "radius": "30%", "center": ["50%", "25%"], "emphasis": {"focus": "data"},
-                 "label": {"formatter": "{b}: {@2012} ({d}%)"}, "encode": {"itemName": "product", "value": "2012", "tooltip": "2012"},},],}
-        st_echarts(option, height="500px", key="echarts")
-
+        
 #####################  YEAR TO DATE    ########################################
 elif period == "YTD":
     def business_wise():
