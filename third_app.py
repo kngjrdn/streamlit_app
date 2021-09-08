@@ -51,13 +51,13 @@ black_ = "Black Oil"
 ph_ = "Private Hauliers"
 
 
-st.title('KITEKO Dashboard')
-st.sidebar.subheader("December 2018")
-currency = st.sidebar.radio("Currency", ("GHS", "USD"))
+#st.title('KITEKO Dashboard')
+#st.sidebar.subheader("December 2018")
+#currency = st.sidebar.radio("Currency", ("GHS", "USD"))
 period = st.sidebar.radio("Period", ("FTM", "YTD", "Quarterly", "Annually"))
 #timeframe = st.radio("Time Frame", ("Monthly", "Quarterly", "Annually"))
 units = st.sidebar.radio("Select Business", (all_, cocoa_, cashew_, other_, oil_, black_, ph_))
-comparison = st.sidebar.radio("Basis of Comparison", ("Previous Year", "Previous Period", "Budget", "Forecast"))
+#comparison = st.sidebar.radio("Basis of Comparison", ("Previous Year", "Previous Period", "Budget", "Forecast"))
 
 
 ##############  FOR THE MONTH   ##############################
